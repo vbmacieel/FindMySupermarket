@@ -1,0 +1,23 @@
+<h2>Supermarkets</h2>
+<th>
+    <thead>
+        <th>Name</th>
+        <th>State</th>
+        <th>City</th>
+        <th>Has Lactose Free Products</th>
+        <th>Has Sugar Free Products</th>
+        <th>Has Gluten Free Products</th>
+        <th>Has Vegan Products</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let supermarket of supermarkets">
+            <th>{{supermarket.Name}}</th>
+            <th>{{supermarket.State}}</th>
+            <th>{{supermarket.City}}</th>
+            <th>{{supermarket.HasLactoseFreeProducts}}</th>
+            <th>{{supermarket.HasSugarFreeProducts}}</th>
+            <th>{{supermarket.HasGlutenFreeProducts}}</th>
+            <th>{{supermarket.HasVeganProducts}}</th>
+        </tr>
+    </tbody>
+</th>
