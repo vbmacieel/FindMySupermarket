@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using SupermarketAPI.Data;
 using SupermarketAPI.Repository;
@@ -14,6 +15,14 @@ builder.Services.AddDbContext<SupermarketContext>(opts => opts.UseSqlServer(buil
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<ISupermarketRepository, SupermarketRepository>();
 builder.Services.AddScoped<ISupermarketService, SupermarketService>();
+
+builder.Services.AddCors(opts =>
+{
+    opts.AddPolicy("CORS", corsPolicyBuilder => corsPolicyBuilder.AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -26,6 +35,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("CORS");
 
 app.UseHttpsRedirection();
 
